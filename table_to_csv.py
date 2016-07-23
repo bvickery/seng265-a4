@@ -16,9 +16,10 @@ for table in tables:
 
 	for r in row:
 		cells = re.findall(r'<(?:td|th)(?:\s*|\w*|\W*)*>(.*?)</(?:td|th)\s*>',r,re.IGNORECASE)
+		print(cells)
 		temp = []
 		for c in cells:
-			temp.append((re.sub(r'\s+',' ',c)).strip())
+			temp.append(re.sub(r'(?:<td>|</td>|<tr>|</tr>)','',(re.sub(r'\s+',' ',c)).strip(),re.IGNORECASE))
 		final_copy.append(temp)
 		
 	print("TABLE %d:"%(i))
